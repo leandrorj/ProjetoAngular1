@@ -16,11 +16,21 @@
             <div class="jumbotron">
                 <h1 class="text-center">Alurapic</h1>
             </div>
-            <!-- ng-repeat - percorre todas as foto do  $scope.fotos-->
-            <meu-painel ng-repeat="foto in fotos" titulo="{{foto.titulo}}">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form>
+                        <input ng-model="filtro" class="form-control" placeholder="filtrar">
+                    </form>
+                </div><!-- fim col-md-12 -->
+            </div><!-- fim row -->
+
+            <div class="row">
+                 <!-- ng-repeat - percorre todas as foto do  $scope.fotos-->
+                <meu-painel class="col-md-2" ng-repeat="foto in fotos | filter : filtro" titulo="{{foto.titulo}}">
                 <img class="img-responsive center-block" src="{{foto.url}}" alt="{{foto.titulo}}">      
                 </meu-painel>
-            </div><!-- fim panel -->
+            </div><!-- fim panel --> 
         </div> <!-- fim container -->        
     </body>
 </html>
