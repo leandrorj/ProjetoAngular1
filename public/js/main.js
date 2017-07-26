@@ -1,5 +1,5 @@
-angular.module('alurapic', ['minhasDiretivas', 'ngAnimate', 'ngRoute'])
-.config(function($routeProvider, $locationProvider){
+angular.module('alurapic', ['minhasDiretivas','ngAnimate', 'ngRoute'])
+.config(function($routeProvider, $locationProvider) {
 
 	$locationProvider.html5Mode(true);
 
@@ -10,10 +10,11 @@ angular.module('alurapic', ['minhasDiretivas', 'ngAnimate', 'ngRoute'])
 
 	$routeProvider.when('/fotos/new', {
 		templateUrl: 'partials/foto.html',
+		controller: 'FotoController'
 	});
 
 	//caso a rota nao exista, é direcionado para a rota fotos
-	$routeProvider.otherwise({ redirectTo: '/fotos'});
+	$routeProvider.otherwise({redirectTo: '/fotos'});
 
 });
 

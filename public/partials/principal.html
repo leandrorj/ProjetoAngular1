@@ -5,10 +5,21 @@
 <div class="row">
     <div class="col-md-12">
         <form>
-            <input ng-model="filtro" ng-model-options="{debounce: 200}" class="form-control" placeholder="filtrar">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <a href="/fotos/new" class="btn btn-primary" type="button">
+						Nova foto
+					</a>    
+                </span>
+                
+                <input class="form-control" placeholder="filtrar" 
+					ng-model="filtro" ng-model-options="{ debounce: 200}">
+            </div>
+
+            
         </form>
-    </div><!-- fim col-md-12 -->
-</div><!-- fim row -->
+    </div> <!-- fim col-md-12 -->
+</div> <!-- fim row -->
 
 <div class="row">
     <!-- ng-repeat - percorre todas as foto do  $scope.fotos-->
