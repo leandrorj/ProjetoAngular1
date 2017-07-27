@@ -13,6 +13,11 @@ angular.module('alurapic', ['minhasDiretivas','ngAnimate', 'ngRoute'])
 		controller: 'FotoController'
 	});
 
+	$routeProvider.when('/fotos/edit/:fotoId', {
+		templateUrl: 'partials/foto.html',
+		controller: 'FotoController'
+	});
+
 	//caso a rota nao exista, é direcionado para a rota fotos
 	$routeProvider.otherwise({redirectTo: '/fotos'});
 
