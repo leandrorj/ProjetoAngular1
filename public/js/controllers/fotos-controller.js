@@ -1,11 +1,20 @@
 //$scope - é utilizado para q o controller disponibilise dados para a view
 //$http - serve para poder fazer uma requisicao
-angular.module('alurapic').controller('FotosController', function($scope, $http){ 
+angular.module('alurapic').controller('FotosController', function($scope, recursoFoto) { 
 
 	$scope.fotos = [];
 	$scope.filtro = '';
 	$scope.mensagem = '';
 
+
+	recursoFoto.query(function(fotos) {
+		$scope.fotos = fotos;
+	}, function(erro){
+		console.log(erro);
+	});
+
+
+/*
 	//utilizando de forma simplificada
 	$http.get('v1/fotos')
 	.success(function(fotos){ //se tiver sucesso no recebimento das fotos 
@@ -14,23 +23,18 @@ angular.module('alurapic').controller('FotosController', function($scope, $http)
 	.error(function(erro){ //se nao tiver sucesso no recebimento da fotos
 		console.log(erro);
 	})
+*/
 
-
-	$scope.remover = function(foto){
-		$http.delete('v1/fotos/' + foto._id)
-		.success(function(){
-			
-			//atualiza a lista (sem fazer uma nova requisicao) apos a remoçao da foto
-			var indeceFoto = $scope.fotos.indexOf(foto);
-			$scope.fotos.splice(indeceFoto, 1);
-			
+	$scope.remover = function(foto) {
+		
+		recursoFoto.delete({fotoId: foto._id}, function() {
+			var indeceDaFoto = $scope.fotos.indexOf(foto);
+			$scope.fotos.splice(indeceDaFoto, 1);
 			$scope.mensagem = 'Foto ' + foto.titulo + 'removido com sucesso!';
-		})
-		.error(function(erro){
-		console.log(erro);
-		$scope.mensagem = 'Não foi possivel remover a foto ' + foto.titulo;
-	})
-
+		}, function(erro){
+			console.log(erro);
+			$scope.mensagem = 'Não foi possivel remover a foto ' + foto.titulo;
+		});
 	};
 });
 /* utilizando json
